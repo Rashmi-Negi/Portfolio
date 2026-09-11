@@ -14,6 +14,23 @@ function App() {
       `url("${publicAsset("paw-cursor.png")}")`
     );
 
+    const catScrollbar = document.querySelector(".cat-scrollbar");
+    const cat = catScrollbar?.querySelector("img");
+
+    const updateCatPosition = () => {
+      if (!catScrollbar || !cat) return;
+
+      const scrollRange = document.documentElement.scrollHeight - window.innerHeight;
+      const travelRange = catScrollbar.clientHeight - cat.offsetHeight;
+      const progress = scrollRange > 0 ? window.scrollY / scrollRange : 0;
+
+      cat.style.transform = `translateY(${progress * travelRange}px)`;
+    };
+
+    updateCatPosition();
+    window.addEventListener("scroll", updateCatPosition, { passive: true });
+    window.addEventListener("resize", updateCatPosition);
+
     const handleClick = (event) => {
       const paw = document.createElement("span");
 
@@ -32,11 +49,17 @@ function App() {
 
     return () => {
       document.removeEventListener("click", handleClick);
+      window.removeEventListener("scroll", updateCatPosition);
+      window.removeEventListener("resize", updateCatPosition);
     };
   }, []);
 
   return (
     <>
+      <div className="cat-scrollbar" aria-hidden="true">
+        <img src={publicAsset("cat-scroll.svg")} alt="" />
+      </div>
+
       {/* =========================================
           MINIMAL BACKGROUND DECORATIONS
           ========================================= */}
@@ -76,7 +99,7 @@ function App() {
         <div className="container">
 
           <a className="navbar-brand" href="#home">
-            Rashmi<span>.</span>
+            Rashmi-Portfolio
           </a>
 
           <button
@@ -242,9 +265,9 @@ function App() {
                   <div className="social-links">
 
                     <a
-                      href="https://linkedin.com/in/rashmi-negi-1751932b8"
+                      href="https://www.linkedin.com/in/rashmi-negi-1751932b8/"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       aria-label="LinkedIn"
                     >
                       <i className="bi bi-linkedin"></i>
@@ -267,11 +290,6 @@ function App() {
                     </a>
 
                   </div>
-
-                  <span className="hero-scroll">
-                    Scroll to explore
-                    <i className="bi bi-arrow-down"></i>
-                  </span>
 
                 </div>
 
@@ -818,24 +836,6 @@ function App() {
 
                 </div>
 
-                {/* PHONE */}
-
-                <div className="contact-item">
-
-                  <i className="bi bi-telephone-fill"></i>
-
-                  <div>
-
-                    <h5>Phone</h5>
-
-                    <a href="tel:+919528904991">
-                      +91 9528904991
-                    </a>
-
-                  </div>
-
-                </div>
-
                 {/* LINKEDIN */}
 
                 <div className="contact-item">
@@ -847,9 +847,9 @@ function App() {
                     <h5>LinkedIn</h5>
 
                     <a
-                      href="https://linkedin.com/in/rashmi-negi-1751932b8"
+                      href="https://www.linkedin.com/in/rashmi-negi-1751932b8/"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                     >
                       LinkedIn Profile
                     </a>

@@ -415,33 +415,6 @@ section {
   transform: translateY(-4px);
 }
 
-.hero-scroll {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  color: var(--muted);
-
-  font-size: 0.78rem;
-}
-
-.hero-scroll i {
-  color: var(--accent);
-
-  animation: scrollArrow 1.7s ease-in-out infinite;
-}
-
-@keyframes scrollArrow {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(5px);
-  }
-}
-
 /* =========================================
    PROFILE AREA
 ========================================= */
@@ -2112,10 +2085,6 @@ section {
     flex-direction: column;
     gap: 18px;
     margin-top: 28px;
-  }
-
-  .hero-scroll {
-    font-size: 0.75rem;
   }
 
   /* Profile */
